@@ -15,7 +15,7 @@ type Planet = {
 }
 
 const spheres : Planet[] = [
-  //{ name: "Sol", size: [218.6,3497.6,3497.6], position: [-800, 0, 0], color: 'white', textureUrl: '/assets/sun.jpg' },
+  { name: "Sol", size: [218.6,3497.6,3497.6], position: [-800, 0, 0], color: 'white', textureUrl: '/assets/sun.jpg' },
   { name: "Mercúrio", size: [1.9,30.4,30.4], position: [-100, 0, 0], color: 'white', textureUrl: "/assets/mercury.png" },
   { name: "Vênus", size: [0.766,12.25,12.25], position: [-50, 0, 0], color: 'white', textureUrl: '/assets/venus.jpg' },
   { name: "Terra", size: [2,32,32], position: [0, 0, 0], color: 'white', textureUrl: '/assets/earth.png' },

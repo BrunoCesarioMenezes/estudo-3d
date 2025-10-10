@@ -15,15 +15,15 @@ type Planet = {
 }
 
 const spheres : Planet[] = [
-  //{ name: "Sol", size: [218.6,3497.6,3497.6], position: [-800, 0, 0], color: 'white', textureUrl: 'public/assets/sun.jpg' },
-  { name: "Mercúrio", size: [1.9,30.4,30.4], position: [-100, 0, 0], color: 'white', textureUrl: "public/assets/mercury.png" },
-  { name: "Vênus", size: [0.766,12.25,12.25], position: [-50, 0, 0], color: 'white', textureUrl: 'public/assets/venus.jpg' },
-  { name: "Terra", size: [2,32,32], position: [0, 0, 0], color: 'white', textureUrl: 'public/assets/earth.png' },
-  { name: "Marte", size: [1.064,17,17], position: [50, 0, 0], color: 'white', textureUrl: 'public/assets/mars.jpg' },
-  { name: "Júpiter", size: [21.34,341.44,341.44], position: [150, 0, 0], color: 'white', textureUrl: "public/assets/jupiter.jpg" },
-  { name: "Saturno", size: [18.28,292.48,292.48], position: [250, 0, 0], color: 'white', textureUrl: "public/assets/saturn.jpg" },
-  { name: "Urano", size: [7.96,127.36,127.36], position: [350, 0, 0], color: 'white', textureUrl: "public/assets/uranus.jpg" },
-  { name: "Netuno", size: [7.74,123.84,123.84], position: [450, 0, 0], color: 'white', textureUrl: "public/assets/nepturn.jpg" },
+  //{ name: "Sol", size: [218.6,3497.6,3497.6], position: [-800, 0, 0], color: 'white', textureUrl: '/assets/sun.jpg' },
+  { name: "Mercúrio", size: [1.9,30.4,30.4], position: [-100, 0, 0], color: 'white', textureUrl: "/assets/mercury.png" },
+  { name: "Vênus", size: [0.766,12.25,12.25], position: [-50, 0, 0], color: 'white', textureUrl: '/assets/venus.jpg' },
+  { name: "Terra", size: [2,32,32], position: [0, 0, 0], color: 'white', textureUrl: '/assets/earth.png' },
+  { name: "Marte", size: [1.064,17,17], position: [50, 0, 0], color: 'white', textureUrl: '/assets/mars.jpg' },
+  { name: "Júpiter", size: [21.34,341.44,341.44], position: [150, 0, 0], color: 'white', textureUrl: "/assets/jupiter.jpg" },
+  { name: "Saturno", size: [18.28,292.48,292.48], position: [250, 0, 0], color: 'white', textureUrl: "/assets/saturn.jpg" },
+  { name: "Urano", size: [7.96,127.36,127.36], position: [350, 0, 0], color: 'white', textureUrl: "/assets/uranus.jpg" },
+  { name: "Netuno", size: [7.74,123.84,123.84], position: [450, 0, 0], color: 'white', textureUrl: "/assets/nepturn.jpg" },
 ]
 
 export default function App() {

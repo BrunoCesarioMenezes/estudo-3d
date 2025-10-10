@@ -40,7 +40,7 @@ export default function App() {
 
   return (
     <div className='flex flex-col bg-black w-screen h-screen'>
-      <Canvas id="scene" camera={{ position: [0, 0, 20], fov: 20 }}>
+      <Canvas camera={{ position: [0, 0, 20], fov: 20 }}>
         <ambientLight intensity={0.5} />
 
         {spheres.map((s, i) => (

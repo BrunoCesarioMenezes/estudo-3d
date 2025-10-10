@@ -5,7 +5,6 @@ import { useFrame, useThree } from '@react-three/fiber'
 export default function CameraController() {
   const { camera, gl } = useThree()
 
-  // keys ref — persistente entre renders
   const keys = useRef({
     w: false,
     a: false,
@@ -13,11 +12,9 @@ export default function CameraController() {
     d: false,
   })
 
-  // rotação
   const yaw = useRef(0)
   const pitch = useRef(0)
 
-  // parâmetros
   const speed = 50
   const lookSpeed = 0.001
 
@@ -33,7 +30,6 @@ export default function CameraController() {
         yaw.current -= e.movementX * lookSpeed
         pitch.current -= e.movementY * lookSpeed
 
-        // limita o ângulo vertical (pra não virar de ponta cabeça)
         pitch.current = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, pitch.current))
       }
     }
@@ -64,11 +60,9 @@ export default function CameraController() {
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('keyup', onKeyUp)
     }
-  }, []) // executa só uma vez
+  }, [])
 
-  // ---- Atualização por frame ----
   useFrame((_, delta) => {
-    // calcula direção de frente e lateral da câmera
     const direction = new THREE.Vector3()
     camera.getWorldDirection(direction)
     direction.normalize()
@@ -76,7 +70,6 @@ export default function CameraController() {
     const right = new THREE.Vector3()
     right.crossVectors(camera.up, direction).normalize().multiplyScalar(-1)
 
-    // vetor de movimento
     const move = new THREE.Vector3()
 
     if (keys.current.w) move.add(direction)
@@ -89,7 +82,6 @@ export default function CameraController() {
       camera.position.add(move)
     }
 
-    // aplica rotação da câmera
     camera.rotation.set(pitch.current, yaw.current, 0, 'YXZ')
   })
 

@@ -7,7 +7,7 @@ export default function Stars({ count = 1000 }: { count?: number }) {
     const y = Math.random() * 1500 - 600
     const z = Math.random() * 1500 - 600
 
-    const color = Math.random() > 0.5 ? 'white' : 'yellow'
+    const color = "white";
 
     stars.push({ position: [x, y, z], color, key: i })
   }
@@ -15,7 +15,7 @@ export default function Stars({ count = 1000 }: { count?: number }) {
   return (
     <>
       {stars.map((s) => (
-        <Sphere key={s.key} args={[0.25,32,32]} position={s.position as [number, number, number]} color={s.color} />
+        <Sphere key={s.key} args={[0.2,32,32]} type="star" position={s.position as [number, number, number]} color={s.color} />
       ))}
     </>
   )

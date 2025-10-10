@@ -1,62 +1,71 @@
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
 import './css/globals.css'
-import Box from './Box.jsx'
 import Sphere from './Sphere.jsx'
 import Stars from './Stars.tsx'
 import CameraController from './CameraController.tsx'
+import {Text} from '@react-three/drei'
+import { useEffect, useRef } from 'react'
 
-const spheres : {position: [number,number,number]; color : string; textureUrl : string | null}[] = [
-  { position: [0, 0, 0], color: 'white', textureUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ea/Equirectangular-projection.jpg' },
-  { position: [100, 0, 0], color: 'white', textureUrl: 'src/assets/AUsVQ.jpg' },
-  { position: [200, 0, 0], color: 'blue', textureUrl: null },
-  { position: [300, 0, 0], color: 'green', textureUrl: null },
-  { position: [400, 0, 0], color: 'yellow', textureUrl: null },
-  { position: [500, 0, 0], color: 'orange', textureUrl: null },
+type Planet = {
+  name : string,
+  position: [number,number,number],
+  size: [number,number,number],
+  color : string,
+  textureUrl : string | null
+}
+
+const spheres : Planet[] = [
+  { name: "Sol", size: [218.6,3497.6,3497.6], position: [-800, 0, 0], color: 'white', textureUrl: 'src/assets/sun.jpg' },
+  { name: "Mercúrio", size: [1.9,30.4,30.4], position: [-100, 0, 0], color: 'white', textureUrl: "src/assets/mercury.png" },
+  { name: "Vênus", size: [0.766,12.25,12.25], position: [-50, 0, 0], color: 'white', textureUrl: 'src/assets/venus.jpg' },
+  { name: "Terra", size: [2,32,32], position: [0, 0, 0], color: 'white', textureUrl: 'src/assets/earth.png' },
+  { name: "Marte", size: [1.064,17,17], position: [50, 0, 0], color: 'white', textureUrl: 'src/assets/mars.jpg' },
+  { name: "Júpiter", size: [21.34,341.44,341.44], position: [150, 0, 0], color: 'white', textureUrl: "src/assets/jupiter.jpg" },
+  { name: "Saturno", size: [18.28,292.48,292.48], position: [250, 0, 0], color: 'white', textureUrl: "src/assets/saturn.jpg" },
+  { name: "Urano", size: [7.96,127.36,127.36], position: [350, 0, 0], color: 'white', textureUrl: "src/assets/uranus.jpg" },
+  { name: "Netuno", size: [7.74,123.84,123.84], position: [450, 0, 0], color: 'white', textureUrl: "src/assets/nepturn.jpg" },
 ]
 
 export default function App() {
+  const tipRef = useRef<HTMLDivElement>(null);
+
+  useEffect(()=>{
+    if(tipRef.current){
+      setTimeout(() =>{
+        tipRef.current.style.display = "none"
+        console.log("Passou o tempo")
+      },10000)
+    }
+  })
+
   return (
     <div className='flex flex-col bg-black w-screen h-screen'>
-      <h1 className="text-center font-bold text-red-500">Testando</h1>
       <Canvas id="scene" camera={{ position: [0, 0, 20], fov: 20 }}>
         <ambientLight intensity={0.5} />
 
-        <directionalLight
-          position={[250, 200, 100]}
-          intensity={1.5}
-          castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-        />
-
-        <directionalLight
-          position={[-250, 200, 100]}
-          intensity={1}
-          castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-        />
-
-        <pointLight
-          position={[250, 50, -50]}
-          intensity={1.2}
-        />
-
-        <pointLight
-          position={[0, 50, 100]}
-          intensity={1}
-        />
-
         {spheres.map((s, i) => (
-            <Sphere key={i} position={s.position} color={s.color} textureUrl={s.textureUrl}></Sphere>
+            <Sphere key={i} textName={s.name} args={s.size} position={s.position} type={undefined} color={s.color} textureUrl={s.textureUrl}></Sphere>
+        ))}
+
+        {spheres.map((s,i)=>(
+          <Text
+          position={[s.position[0],s.position[1]+4+s.size[0],s.position[2]]}
+          fontSize={s.size[0]}
+          color="white"
+          anchorX="center"
+          anchorY="bottom"
+        >
+          {s.name}
+        </Text>
         ))}
 
         <Stars count={5000} />
 
         <CameraController />
       </Canvas>
-        <p className="text-white font-bold" id="description"></p>
+      <div ref={tipRef} className="absolute text-white text-lg border-2 border-neutral-300 font-bold self-center bottom-20 bg-neutral-600/40 px-4 py-2 rounded-md">
+        Use o WASD para explorar o espaço e o mouse para se guiar
+      </div>
     </div>
   )
 }
